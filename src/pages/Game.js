@@ -4,7 +4,7 @@ import { Strong } from '../styled/Strong';
 
 export default function Game({history}) {
     const [score, setScore] = useState(1);
-    const MAX_SECONDS = 30;
+    const MAX_SECONDS = 2;
     const [ms, setMs] = useState(0);
     const [seconds, setSeconds] = useState(MAX_SECONDS);
 
@@ -24,13 +24,20 @@ export default function Game({history}) {
         setMs(addLeadingZeros(updatedMs, 3));
     };
 
+    useEffect ( () => {
+        if(seconds <= -1){
+            history.push('/gameOver');
+        }
+    
+    }, [seconds, ms]);
+
     const addLeadingZeros = (num, length) => {
         let zeros = '';
         for(let i = 0; i < length; i++){
             zeros += "0"
         }
         return (zeros + num).slice(-length);
-    }
+    };
 
     return (
         <StyledGame>
