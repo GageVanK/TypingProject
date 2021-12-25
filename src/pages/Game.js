@@ -1,18 +1,26 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useCallback} from 'react';
 import { StyledGame, StyledScore, StyledChar, StyledTimer } from '../styled/Game';
 import { Strong } from '../styled/Strong';
 
 export default function Game({history}) {
-    const [score, setScore] = useState(1);
-    const MAX_SECONDS = 2;
-    const [ms, setMs] = useState(0);
+    const MAX_SECONDS = 30;
+    const chars = 'abcdefghijklmnopqrstuvwxyz0123456789';
+    const [score, setScore] = useState(0);
+    const [currentChar, setCurrentChar] = useState('');
+    const [ms, setMs] = useState(999);
     const [seconds, setSeconds] = useState(MAX_SECONDS);
 
     useEffect (() => {
+        setRandomChar();
         const currentTime = new Date();
         const interval = setInterval( () => updateTime(currentTime), 1);
         return () => clearInterval(interval);
     }, []);
+
+    const setRandomChar = () => {
+        const randomInt = Math.floor(Math.random() * 36);
+        setCurrentChar(chars[randomInt]);
+    }
 
     const updateTime = (startTime) => {
         const endTime = new Date();
@@ -29,7 +37,30 @@ export default function Game({history}) {
             history.push('/gameOver');
         }
     
-    }, [seconds, ms]);
+    }, [seconds, ms, history]);
+
+    const keyUpHandler = useCallback(
+        (e) => {
+            console.log(e.key, currentChar);
+            if (e.key === currentChar) {
+                setScore((prevScore) => prevScore + 1);
+            } else {
+                if (score > 0) {
+                    setScore((prevScore) => prevScore - 1);
+                }
+            }
+            setRandomChar();
+        },
+        [currentChar]
+    );
+
+    useEffect(() => 
+    {
+        document.addEventListener('keyup', keyUpHandler);
+        return () => {
+            document.removeEventListener('keyup', keyUpHandler);
+        };
+    }, [keyUpHandler]);
 
     const addLeadingZeros = (num, length) => {
         let zeros = '';
@@ -42,7 +73,7 @@ export default function Game({history}) {
     return (
         <StyledGame>
             <StyledScore>Score: <Strong>{score}</Strong></StyledScore>
-            <StyledChar>A</StyledChar>
+            <StyledChar>{currentChar}</StyledChar>
             <StyledTimer>Time:{''} <Strong>{seconds}: {ms}</Strong></StyledTimer>
         </StyledGame>
     );
