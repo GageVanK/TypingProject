@@ -27,7 +27,7 @@
     ],
     "plugins": [
       "react-hooks"
-    ],
+    ]
   },
   "browserslist": {
     "production": [
