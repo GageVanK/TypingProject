@@ -11,6 +11,8 @@ export default function Game({history}) {
     const [currentChar, setCurrentChar] = useState('');
     const chars = 'abcdefghijklmnopqrstuvwxyz0123456789';
 
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect (() => {
         setRandomChar();
         const currentTime = new Date();
@@ -40,6 +42,7 @@ export default function Game({history}) {
     
     }, [seconds, ms, history]);
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     const keyUpHandler = useCallback(
         (e) => {
             console.log(e.key, currentChar);
