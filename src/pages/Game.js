@@ -18,7 +18,7 @@ export default function Game({history}) {
         const currentTime = new Date();
         const interval = setInterval( () => updateTime(currentTime), 1);
         return () => clearInterval(interval);
-        
+        // eslint-disable-line
     },[]);
 
     const setRandomChar = () => {
@@ -66,6 +66,7 @@ export default function Game({history}) {
         return () => {
             document.removeEventListener('keyup', keyUpHandler);
         };
+        // eslint-disable-line
     }, [keyUpHandler]);
 
     const addLeadingZeros = (num, length) => {
