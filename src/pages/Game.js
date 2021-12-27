@@ -4,19 +4,19 @@ import { StyledGame, StyledScore, StyledChar, StyledTimer } from '../styled/Game
 import { Strong } from '../styled/Strong';
 
 export default function Game({history}) {
-    const MAX_SECONDS = 5;
-    const chars = 'abcdefghijklmnopqrstuvwxyz0123456789';
     const [score, setScore] = useScore(0);
-    const [currentChar, setCurrentChar] = useState('');
+    const MAX_SECONDS = 5;
     const [ms, setMs] = useState(999);
     const [seconds, setSeconds] = useState(MAX_SECONDS);
+    const [currentChar, setCurrentChar] = useState('');
+    const chars = 'abcdefghijklmnopqrstuvwxyz0123456789';
 
     useEffect (() => {
         setRandomChar();
         const currentTime = new Date();
         const interval = setInterval( () => updateTime(currentTime), 1);
         return () => clearInterval(interval);
-    }, []);
+    },[]);
 
     const setRandomChar = () => {
         const randomInt = Math.floor(Math.random() * 36);
