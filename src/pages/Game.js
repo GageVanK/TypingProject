@@ -12,12 +12,13 @@ export default function Game({history}) {
     const chars = 'abcdefghijklmnopqrstuvwxyz0123456789';
 
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    
     useEffect (() => {
         setRandomChar();
         const currentTime = new Date();
         const interval = setInterval( () => updateTime(currentTime), 1);
         return () => clearInterval(interval);
+        
     },[]);
 
     const setRandomChar = () => {
@@ -42,7 +43,7 @@ export default function Game({history}) {
     
     }, [seconds, ms, history]);
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+
     const keyUpHandler = useCallback(
         (e) => {
             console.log(e.key, currentChar);
@@ -55,6 +56,7 @@ export default function Game({history}) {
             }
             setRandomChar();
         },
+        
         [currentChar]
     );
 
