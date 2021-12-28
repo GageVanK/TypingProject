@@ -1,22 +1,30 @@
+require('dotenv').config();
 const Airtable = require('airtable');
 
 Airtable.configure({
-    apiKey: 'key4cFwk1ynHHzTTL',
+    apiKey: process.env.AIRTABLE_API_KEY,
 });
 
-const base = require('airtable').base('appKbu6WMQiKJEvAx');
-const table = base('TypingGame');
+const base = require('airtable').base(process.env.AIRTABLE_API_BASE);
+const table = base(process.env.AIRTABLE_API_TABLE);
 
 exports.handler = async (event) => {
-
+try{
     const records = await table.select().firstPage();
     const formattedRecords = records.map((record) => ({
         id: record.id,
-        fields: record.fields
+        fields: record.fields,
     }));
 
     return {
         statusCode: 200,
         body: JSON.stringify(formattedRecords),
     };
+}catch (err) {
+    return {
+        statusCode: 500,
+        body: JSON.stringify({err: "Error"}),
+         };
+
+    }
 };
