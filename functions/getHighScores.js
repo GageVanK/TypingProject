@@ -12,7 +12,7 @@ exports.handler = async (event) => {
     const records = await table
     .select({filterByFormula: `AND(name != " ", score > 0) ` }).firstPage();
     const formattedRecords = records.map((record) => ({
-        if: record.id,
+        id: record.id,
         fields: record.fields,  
     }));
 
