@@ -1,10 +1,12 @@
+require('dotenv').config();
+
 var Airtable = require('airtable');
 Airtable.configure({
     endpointUrl: 'https://api.airtable.com',
-    apiKey: 'key4cFwk1ynHHzTTL'
+    apiKey: process.env.AIRTABLE_API_KEY
 });
-const base = Airtable.base('appKbu6WMQiKJEvAx');
-const table = base.table("Table1");
+const base = Airtable.base(process.env.AIRTABLE_BASE);
+const table = base.table(process.env.AIRTABLE_TABLE);
 
 exports.handler = async (event, context) => {
     try{
