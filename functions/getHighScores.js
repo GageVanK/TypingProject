@@ -5,7 +5,7 @@ Airtable.configure({
     apiKey: process.env.REACT_APP_AIRTABLE_API_KEY,
 });
 const base = Airtable.base(process.env.REACT_APP_AIRTABLE_BASE);
-const table = base.table(process.env.REACT_APP_AIRTABLE_TABLE);
+const table = base.table('Table1');
 
 exports.handler = async (event, context) => {
     try{
