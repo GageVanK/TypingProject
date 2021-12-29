@@ -4,7 +4,7 @@ Airtable.configure({
     apiKey: 'key4cFwk1ynHHzTTL'
 });
 const base = Airtable.base('appKbu6WMQiKJEvAx');
-const table = base.table("TypingGame");
+const table = base.table("Table1");
 
 exports.handler = async (event, context) => {
 
