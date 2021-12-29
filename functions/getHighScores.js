@@ -9,7 +9,8 @@ const table = base.table('Table1');
 
 exports.handler = async (event) => {
     try {
-    const records = await table.select({}).firstPage();
+    const records = await table
+    .select({filterByFormula: `name != " " ` }).firstPage();
     const formattedRecords = records.map((record) => ({
         if: record.id,
         fields: record.fields,  
