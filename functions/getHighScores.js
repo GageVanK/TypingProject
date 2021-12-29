@@ -7,8 +7,8 @@ Airtable.configure({
 const base = Airtable.base(process.env.REACT_APP_AIRTABLE_BASE);
 const table = base.table('Table1');
 
-exports.handler = async (event, context) => {
-    try{
+exports.handler = async (event) => {
+    try {
     const records = await table.select({}).firstPage();
     const formattedRecords = records.map((record) => ({
         if: record.id,
