@@ -28,7 +28,7 @@ export default function HighScores() {
             <ScoresList>
                 {highScores.map((score) => (
                     <ScoresLI key={score.id}>
-                        {score.fields.name} - {score.fields.score}
+                       {index + 1}. {score.fields.name} - {score.fields.score}
                     </ScoresLI>
                 ))}
             </ScoresList>
