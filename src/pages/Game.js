@@ -67,6 +67,7 @@ export default function Game({history}) {
             }
             setRandomChar();
         },
+        // eslint-disable-next-line react-hooks/exhaustive-deps
         [currentChar]
     );
 
