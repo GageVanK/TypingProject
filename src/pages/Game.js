@@ -13,26 +13,37 @@ export default function Game({history}) {
 
 
     
-    useEffect (() => {
+    useEffect(() => {
         setRandomChar();
+        setScore(0);
         const currentTime = new Date();
-        const interval = setInterval( () => updateTime(currentTime), 1);
-        return () => clearInterval(interval);
+        const interval = setInterval(() => updateTime(currentTime), 1);
+        return () => {
+            clearInterval(interval);
+        };
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    },[]);
+    }, []);
+ 
 
     const setRandomChar = () => {
         const randomInt = Math.floor(Math.random() * 36);
         setCurrentChar(chars[randomInt]);
-    }
+    };
 
     const updateTime = (startTime) => {
         const endTime = new Date();
-        const msPassedStr = ( endTime.getTime() - startTime.getTime()).toString();
-        const formttedMsString = ('0000' + msPassedStr).slice(-5);
-        const updatedSeconds = MAX_SECONDS - parseInt(formttedMsString.substring(0, 2));
-        const updatedMs = 1000 - parseInt(formttedMsString.substring(formttedMsString.length - 3));
-        setSeconds(addLeadingZeros(updatedSeconds, 2))
+        const msPassedStr = (
+            endTime.getTime() - startTime.getTime()
+        ).toString();
+        //add zeros if necessary to ensure the string has exactly 5 characters
+        const formattedMSString = ('0000' + msPassedStr).slice(-5);
+        //0000 - first 2 are the seconds, and the last 3 are the ms
+        const updatedSeconds =
+            MAX_SECONDS - parseInt(formattedMSString.substring(0, 2)) - 1;
+        const updatedMs =
+            1000 -
+            parseInt(formattedMSString.substring(formattedMSString.length - 3));
+        setSeconds(addLeadingZeros(updatedSeconds, 2));
         setMs(addLeadingZeros(updatedMs, 3));
     };
 
@@ -56,7 +67,6 @@ export default function Game({history}) {
             }
             setRandomChar();
         },
-        // eslint-disable-next-line react-hooks/exhaustive-deps
         [currentChar]
     );
 
