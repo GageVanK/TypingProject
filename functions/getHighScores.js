@@ -11,7 +11,7 @@ exports.handler = async (event) => {
     try {
     const records = await table
     .select({
-        sort:[{field: "name", direction: "desc"}],
+        sort:[{field: "score", direction: "desc"}],
         filterByFormula: `AND(name != " ", score > 0)`, 
     })
     .firstPage();
