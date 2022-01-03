@@ -4,13 +4,18 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { ScoreProvider } from './contexts/ScoreContext';
+import { Auth0Provider } from "@auth0/auth0-react";
 
 ReactDOM.render(
-  <React.StrictMode>
+  <Auth0Provider
+    domain="dev-or69iw65.us.auth0.com"
+    clientId="UM4LTqhHPwCr6RbWAKPMTEml6aX2uDZz"
+    redirectUri={window.location.origin}
+  >
   <ScoreProvider>
     <App />
   </ScoreProvider>
-  </React.StrictMode>,
+  </Auth0Provider>,
   document.getElementById('root')
 );
 

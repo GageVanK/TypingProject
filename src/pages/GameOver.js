@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useScore } from '../contexts/ScoreContext';
 import { StyledLink } from '../styled/Navbar';
+import { StyledChar } from '../styled/Game';
 
 export default function GameOver({ history }) {
     const [score] = useScore();
@@ -36,9 +37,9 @@ export default function GameOver({ history }) {
     return (
         <div>
             <h1>Game Over</h1>
+            <StyledChar>{score}</StyledChar>
             <h2>{scoreMessage}</h2>
 
-        <p>{score}</p>
             <div>
                 <StyledLink to="/">Go Home</StyledLink>
             </div>

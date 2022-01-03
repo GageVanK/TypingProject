@@ -2,8 +2,19 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { StyledNavbar, StyledBrand, StyledNavItems, StyledLink } from '../styled/Navbar';
 import { Accent } from '../styled/AccentColor';
+import { useAuth0 } from "@auth0/auth0-react";
+import LoginButton from './LoginButton';
+import LogoutButton from './LogoutButton';
+
 
 export default function Navbar() {
+    const {  user, isAuthenticated, isLoading } = useAuth0();
+    console.log(user);
+    if (isLoading) {
+        return <div>Loading ...</div>;
+      }
+
+   
     return (
         <StyledNavbar>
             <StyledBrand className="nav__brand">
@@ -18,6 +29,11 @@ export default function Navbar() {
                 <li>
                     <StyledLink to="/highScores">High Scores</StyledLink>
                 </li>
+
+                { !isAuthenticated && <LoginButton /> }
+                { isAuthenticated && <LogoutButton /> }
+
+    
             </StyledNavItems>
     
         </StyledNavbar>
