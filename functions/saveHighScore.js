@@ -1,6 +1,7 @@
 const { table, getHighScores } = require('./utils/airtable');
 
 exports.handler = async (event) => {
+    console.log(event.headers);
     if (event.httpMethod !== 'POST') {
         return {
             statusCode: 405,

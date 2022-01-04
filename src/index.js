@@ -11,6 +11,7 @@ ReactDOM.render(
     domain="dev-or69iw65.us.auth0.com"
     clientId="UM4LTqhHPwCr6RbWAKPMTEml6aX2uDZz"
     redirectUri={window.location.origin}
+    audience="https://typinggameapi"
   >
   <ScoreProvider>
     <App />
