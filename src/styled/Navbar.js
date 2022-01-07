@@ -28,7 +28,7 @@ export const StyledLink = styled(Link)`
     font-size: 1.2rem;
     transition: color 200ms;
     &:hover {
-        color: #7DA2A9;
+        color: var(--accent-color);
     }
 
 `;

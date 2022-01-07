@@ -20,5 +20,5 @@ export const StyledChar = styled.p`
     grid-row: 2;
     grid-column: 1/4;
     text-align: center;
-    color: #7DA2A9;
+    color: var(--accent-color);
 `;

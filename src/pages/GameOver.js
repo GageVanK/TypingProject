@@ -48,8 +48,9 @@ export default function GameOver({ history }) {
     return (
         <div>
             <h1>Game Over</h1>
-            <StyledChar>{score}</StyledChar>
             <h2>{scoreMessage}</h2>
+            <StyledChar>{score}</StyledChar>
+            
             {!isAuthenticated && (
                 <h2>Login or Signup to track your high scores!</h2>
             ) }

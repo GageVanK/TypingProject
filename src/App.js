@@ -8,13 +8,21 @@ import Navbar from './components/Navbar';
 import { Container } from './styled/Container';
 import  { Main } from './styled/Main';
 import Global from './styled/Global';
-
+import { useAuth0 } from "@auth0/auth0-react";
+import { ThemeProvider } from "styled-components";
+import { lightTheme, darkTheme } from "./styled/Themes";
 
 function App() {
+    const { loading } = useAuth0();
+    const theme = "light";
+    const currentTheme = theme === 'light' ? lightTheme : darkTheme;
     return (
         <Router>
+        <ThemeProvider theme={currentTheme}>
             <Global />
             <Main>  
+            {loading && <p>Loading...</p>}
+            {!loading && (
                 <Container>
                     <Navbar />
                     <Switch>
@@ -24,7 +32,9 @@ function App() {
                         <Route path="/" component={Home} />
                     </Switch>
                 </Container>
+            )}
             </Main>
+            </ThemeProvider>
         </Router>
     );
 }
