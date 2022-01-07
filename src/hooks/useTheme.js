@@ -1,6 +1,9 @@
 import{ useEffect, useState} from 'react';
-
-export default () => { const[theme, setTheme] = useState('light');
+import { ThemeConsumer } from 'styled-components';
+/* eslint-disable import/prefer-default-export */
+export default () => { 
+    
+    const[theme, setTheme] = useState('light');
 
     useEffect(() => {
         const localStorageTheme = window.localStorage.getItem("theme");
@@ -19,4 +22,5 @@ export default () => { const[theme, setTheme] = useState('light');
     };
 
     return [theme, toggleTheme];
+    
 };
