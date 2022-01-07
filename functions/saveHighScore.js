@@ -1,7 +1,16 @@
 const { table, getHighScores } = require('./utils/airtable');
+const { getAccessTokenFromHeaders, validateAccessToken } = require('./utils/auth');
 
 exports.handler = async (event) => {
-    console.log(event.headers);
+    const token = getAccessTokenFromHeaders(event.headers);
+    const user = await validateAccessToken(token);
+   
+    if (!user) {
+        return {
+            statusCode: 403,
+            body: JSON.stringify({ err: 'Unauthorized' }),
+        };
+    }
     if (event.httpMethod !== 'POST') {
         return {
             statusCode: 405,
@@ -9,7 +18,8 @@ exports.handler = async (event) => {
         };
     }
 
-    const { score, name } = JSON.parse(event.body);
+    const { score } = JSON.parse(event.body);
+    const name = user['https://gage/username'];
     if (typeof score === 'undefined' || !name) {
         return {
             statusCode: 400,
@@ -46,7 +56,7 @@ exports.handler = async (event) => {
         return {
             statusCode: 500,
             body: JSON.stringify({
-                err: 'Failed to save score in Airtabl',
+                err: 'Failed to save score in Airtable',
             }),
         };
     }
