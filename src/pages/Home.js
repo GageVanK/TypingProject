@@ -1,6 +1,5 @@
 import React from 'react';
 import CTA from '../styled/CTA';
-import { Accent } from '../styled/AccentColor'
 import {StyledTitle} from '../styled/TitleStyle'
 
 export default function Home() {
