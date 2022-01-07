@@ -1,6 +1,6 @@
 import{ useEffect, useState} from 'react';
 
-/* eslint-disable import/prefer-default-export */
+// eslint-disable import/prefer-default-export 
 export default () => { 
     
     const[theme, setTheme] = useState('light');

@@ -50,7 +50,7 @@ export default function GameOver({ history }) {
             <h1>Game Over</h1>
             <h2>{scoreMessage}</h2>
             <StyledChar>{score}</StyledChar>
-            
+        
             {!isAuthenticated && (
                 <h2>Login or Signup to track your high scores!</h2>
             ) }
