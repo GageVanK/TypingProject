@@ -1,6 +1,6 @@
 import{ useEffect, useState} from 'react';
 
-// eslint-disable import/prefer-default-export 
+/* eslint import/no-anonymous-default-export: [2, {"allowArrowFunction": true}] */
 export default () => { 
     
     const[theme, setTheme] = useState('light');
