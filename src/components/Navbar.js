@@ -1,15 +1,16 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { StyledNavbar, StyledBrand, StyledNavItems, StyledLink } from '../styled/Navbar';
+import { StyledNavbar, StyledBrand, StyledNavItems, StyledLink, StyledButtonLink } from '../styled/Navbar';
 import { Accent } from '../styled/AccentColor';
 import { useAuth0 } from "@auth0/auth0-react";
 import LoginButton from './LoginButton';
 import LogoutButton from './LogoutButton';
+import useTheme from '../hooks/useTheme';
 
 
-export default function Navbar() {
+export default function Navbar({ toggleTheme }) {
     const {  user, isAuthenticated, isLoading } = useAuth0();
-    console.log(user);
+    
     if (isLoading) {
         return <div>Loading ...</div>;
       }
@@ -29,6 +30,12 @@ export default function Navbar() {
                 <li>
                     <StyledLink to="/highScores">High Scores</StyledLink>
                 </li>
+
+                
+
+                <StyledButtonLink onClick={toggleTheme}>
+                    Toggle Theme
+                </StyledButtonLink>
 
                 { !isAuthenticated && <LoginButton /> }
                 { isAuthenticated && <LogoutButton /> }
