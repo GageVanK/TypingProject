@@ -6,7 +6,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import LoginButton from './LoginButton';
 import LogoutButton from './LogoutButton';
 
-
+//NavBar includes a Title, Links to the HomePage/HighScores, Toggle Theme Button(light/dark mode), Login/Logout Button
 export default function Navbar({ toggleTheme }) {
     const { isAuthenticated, isLoading } = useAuth0();
     
