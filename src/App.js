@@ -19,6 +19,7 @@ function App() {
     const [theme, toggleTheme] = useTheme();
     const currentTheme = theme === 'light' ? lightTheme : darkTheme;
     return (
+        //Using React Router to switch between pages 
         <Router>
         <ThemeProvider theme={currentTheme}>
             <Global />
@@ -28,6 +29,7 @@ function App() {
                 <Container>
                     <Navbar toggleTheme={toggleTheme}/>
                     <Switch>
+                        //Project pages HomePage, GamePage, HighScorePage, & GameOverPage
                         <Route path="/game" component={Game} />
                         <Route path="/highScores" component={HighScores} />
                         <Route path="/gameOver" component={GameOver} />
